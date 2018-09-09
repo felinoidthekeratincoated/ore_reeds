@@ -1,0 +1,6 @@
+{
+    "parent": "block/tinted_cross",
+    "textures": {
+        "cross": "ore_reeds:blocks/ender_pearl_reed"
+    }
+}

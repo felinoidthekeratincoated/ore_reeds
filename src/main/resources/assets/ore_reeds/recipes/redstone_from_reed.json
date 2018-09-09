@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#"
+  ],
+  "key": {
+    "#": {
+      "item": "ore_reeds:redstone_reed"
+    }
+  },
+  "result": {
+    "item": "minecraft:redstone",
+    "data": 0
+  }
+}

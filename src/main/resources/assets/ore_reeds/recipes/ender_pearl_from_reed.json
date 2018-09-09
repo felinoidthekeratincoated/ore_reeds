@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "# #",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "ore_reeds:ender_pearl_reed"
+    }
+  },
+  "result": {
+    "item": "minecraft:ender_pearl"
+  }
+}

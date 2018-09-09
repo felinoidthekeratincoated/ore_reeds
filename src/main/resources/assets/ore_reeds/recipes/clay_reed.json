@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "|#|",
+    "|%|",
+    "|#|"
+  ],
+  "key": {
+    "|": {
+      "item": "minecraft:reeds"
+    },
+    "#": {
+      "item": "minecraft:clay"
+    },
+    "%": {
+      "item": "minecraft:clay_ball"
+    }
+  },
+  "result": {
+    "item": "ore_reeds:clay_reed"
+  }
+}

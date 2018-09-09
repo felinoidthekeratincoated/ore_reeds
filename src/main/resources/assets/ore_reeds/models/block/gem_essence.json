@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "ore_reeds:blocks/gem_essence"
+    }
+}

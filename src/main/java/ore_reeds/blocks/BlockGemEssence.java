@@ -1,0 +1,40 @@
+package felinoid.ore_reeds;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+
+public class BlockGemEssence extends Block
+{
+    protected BlockGemEssence()
+    {
+        super(Material.ROCK);
+        this.setUnlocalizedName("ore_reeds:gem_essence");
+        this.setRegistryName("gem_essence");
+        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        this.setHarvestLevel("pickaxe", 0);
+        this.setResistance(10.0F);
+        this.setHardness(5.0F);
+    }
+
+    /**
+     * Get the MapColor for this Block and the given BlockState
+     */
+    @Override
+    public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+        return MapColor.SNOW;
+    }
+    
+}
