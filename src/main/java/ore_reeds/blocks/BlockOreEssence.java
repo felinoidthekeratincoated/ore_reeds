@@ -22,7 +22,7 @@ public class BlockOreEssence extends Block
         super(Material.ROCK);
         this.setUnlocalizedName("ore_reeds:ore_essence");
         this.setRegistryName("ore_essence");
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+        this.setCreativeTab(ModBlocks.tabOreReeds);
         this.setHarvestLevel("pickaxe", 0);
         this.setResistance(10.0F);
         this.setHardness(5.0F);

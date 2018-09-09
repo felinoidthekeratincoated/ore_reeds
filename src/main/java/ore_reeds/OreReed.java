@@ -34,7 +34,7 @@ public class OreReed extends Block implements net.minecraftforge.common.IPlantab
 		super(Material.PLANTS, MapColor.GRAY);
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
         this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTabs.DECORATIONS);
+        this.setCreativeTab(ModBlocks.tabOreReeds);
 	}
 
 	@Override

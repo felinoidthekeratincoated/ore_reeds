@@ -18,7 +18,19 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.*;
 
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+
 public class ModBlocks {
+    // Make creative mode tab
+    static final CreativeTabs tabOreReeds = (new CreativeTabs("tabOreReeds") {
+        @Override
+        public ItemStack getTabIconItem() {
+            return new ItemStack(item_ore_essence);
+        }		
+    });
+
 	public static Block ore_essence = new BlockOreEssence();
 	public static ItemBlock item_ore_essence = getItemBlock(ore_essence);
 
