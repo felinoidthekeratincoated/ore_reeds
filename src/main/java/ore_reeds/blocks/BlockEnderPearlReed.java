@@ -13,6 +13,6 @@ public class BlockEnderPearlReed extends OreReed
 	@Override
     protected boolean canGrowOn(Block blockIn)
     {
-    	return blockIn == ModBlocks.gem_essence;
+    	return blockIn.getRegistryName().toString().equals(ReedsConfig.tier_2_block);
     }
 }

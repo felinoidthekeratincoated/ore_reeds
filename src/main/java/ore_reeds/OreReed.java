@@ -150,7 +150,10 @@ public class OreReed extends Block implements net.minecraftforge.common.IPlantab
      */
     protected boolean canGrowOn(Block blockIn)
     {
-    	return blockIn == ModBlocks.ore_essence || blockIn == ModBlocks.gem_essence;
+        String name = blockIn.getRegistryName().toString();
+        // name had better not be null
+    	return name.equals(ReedsConfig.tier_1_block) 
+            || name.equals(ReedsConfig.tier_2_block);
     }
 
     @Nullable
