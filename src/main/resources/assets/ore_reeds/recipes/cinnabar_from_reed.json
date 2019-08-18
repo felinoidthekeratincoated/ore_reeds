@@ -7,10 +7,10 @@
   ],
   "key": {
     "#": {
-      "item": "ore_reeds:iron_reed"
+      "item": "ore_reeds:cinnabar_reed"
     }
   },
   "result": {
-    "item": "minecraft:iron_ore"
+    "item": "thaumcraft:ore_cinnabar"
   }
 }

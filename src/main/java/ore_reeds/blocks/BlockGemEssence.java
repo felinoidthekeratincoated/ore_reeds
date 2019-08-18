@@ -1,4 +1,4 @@
-package felinoid.ore_reeds;
+package felinoid.ore_reeds.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;

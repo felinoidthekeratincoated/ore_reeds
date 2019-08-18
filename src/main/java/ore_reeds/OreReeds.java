@@ -1,5 +1,6 @@
 package felinoid.ore_reeds;
 
+import felinoid.ore_reeds.blocks.ModBlocks;
 import felinoid.ore_reeds.integration.thaumcraft.ThaumcraftAspects;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
@@ -17,7 +18,7 @@ public class OreReeds
 {
 	public static final String NAME = "Ore Reeds";
 	public static final String MODID = "ore_reeds";
-	public static final String VERSION = "1.12.2-1.0.6";
+	public static final String VERSION = "1.12.2-1.1.1";
 
 	public static boolean thaumcraftLoaded = false;
 	
