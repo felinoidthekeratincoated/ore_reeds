@@ -83,7 +83,7 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
                 {
                     int j = ((Integer)state.getValue(AGE)).intValue();
 
-                    // rand.nextBoolean() is there so these grow half the speed of normal reeds
+                    // This is needed to decrease growth speed
                     if(rand.nextInt() % stats.slowdown == 0
                     		&& net.minecraftforge.common.ForgeHooks.onCropsGrowPre(worldIn, pos, state, true))
                     {

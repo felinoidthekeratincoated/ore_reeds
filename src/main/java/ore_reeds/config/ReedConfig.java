@@ -14,7 +14,9 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEve
 
 public class ReedConfig
 {
-    @Comment({"If any of these mods exist, this type of reed will be loaded."})
+    @Comment({"If any of these mods exist, this type of reed will be loaded.",
+        "To always disable this reed type, make the list empty.",
+        "To always enable it, put \"minecraft\" (without quotes) in this list."})
     public String[] mods;
     // Creafting options are disabled for now
     //@Comment({"Set to false to prevent this reed from being crafted."})
