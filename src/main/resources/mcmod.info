@@ -1,8 +1,0 @@
-[{
-  "modid": "ore_reeds",
-  "name": "Ore Reeds",
-  "description": "Grow ores like reeds. They need special blocks to grow on, and they need to be next to lava to get all the right nutrients.",
-  "mcversion": "${mcversion}",
-  "authorList": ["felinoid"],
-  "credits": "All the nice people at the Forge forums who helped me make my very first block."
-}]

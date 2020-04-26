@@ -14,6 +14,4 @@ tile.ore_reeds:nether_quartz_reed.name=Nether Quartz Reed
 tile.ore_reeds:obsidian_reed.name=Obsidian Reed
 tile.ore_reeds:redstone_reed.name=Redstone Reed
 
-tile.ore_reeds:amber_reed.name=Amber Bearing Reed
-tile.ore_reeds:cinnabar_reed.name=Cinnabar Reed
 itemGroup.tabOreReeds=Ore Reeds
