@@ -1,5 +1,5 @@
 {
     "variants": {
-        "normal": { "model": "ore_reeds:ore_essence" }
+        "": { "model": "ore_reeds:block/ore_essence" }
     }
 }

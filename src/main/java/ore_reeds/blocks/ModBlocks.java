@@ -1,98 +1,87 @@
 package felinoid.ore_reeds.blocks;
 
+import felinoid.ore_reeds.OreReeds;
 import felinoid.ore_reeds.config.ReedsConfig;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.block.material.MaterialColor;
+//import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.*;
 
 
 import java.util.ArrayList;
 
+@Mod.EventBusSubscriber(modid = OreReeds.MODID, bus = Bus.MOD)
 public class ModBlocks {
     // Make creative mode tab
-    static final CreativeTabs tabOreReeds = (new CreativeTabs("tabOreReeds") {
+    static final ItemGroup tabOreReeds = (new ItemGroup("tabOreReeds") {
         @Override
-        public ItemStack getTabIconItem()
+        public ItemStack createIcon()
         {
             return new ItemStack(item_ore_essence);
         }		
     });
 
-	public static Block ore_essence = new BlockOreEssence();
-	public static ItemBlock item_ore_essence = getItemBlock(ore_essence);
+	public static Block ore_essence = new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3F, 3F)).setRegistryName("ore_essence");
+	public static BlockItem item_ore_essence = getBlockItem(ore_essence);
 
-	public static Block gem_essence = new BlockGemEssence();
-	public static ItemBlock item_gem_essence = getItemBlock(gem_essence);
+	public static Block gem_essence = new Block(Block.Properties.create(Material.ROCK, MaterialColor.SNOW).hardnessAndResistance(3F, 3F)).setRegistryName("gem_essence");
+	public static BlockItem item_gem_essence = getBlockItem(gem_essence);
 	
 	public static Block blaze_reed = 
                         new BlockOreReed("blaze_reed", ReedsConfig.blaze);
-	public static ItemBlock item_blaze_reed = getItemBlock(blaze_reed);
+	public static BlockItem item_blaze_reed = getBlockItem(blaze_reed);
 	
 	public static Block clay_reed = new BlockOreReed("clay_reed", ReedsConfig.clay);
-	public static ItemBlock item_clay_reed = getItemBlock(clay_reed);
+	public static BlockItem item_clay_reed = getBlockItem(clay_reed);
 	
 	public static Block coal_reed = new BlockOreReed("coal_reed", ReedsConfig.coal);
-	public static ItemBlock item_coal_reed = getItemBlock(coal_reed);
+	public static BlockItem item_coal_reed = getBlockItem(coal_reed);
 	
 	public static Block diamond_reed = new BlockOreReed("diamond_reed", ReedsConfig.diamond);
-	public static ItemBlock item_diamond_reed = getItemBlock(diamond_reed);
+	public static BlockItem item_diamond_reed = getBlockItem(diamond_reed);
 	
 	public static Block emerald_reed = new BlockOreReed("emerald_reed", ReedsConfig.emerald);
-	public static ItemBlock item_emerald_reed = getItemBlock(emerald_reed);
+	public static BlockItem item_emerald_reed = getBlockItem(emerald_reed);
 	
 	public static Block ender_pearl_reed = 
                 new BlockOreReed("ender_pearl_reed", ReedsConfig.ender_pearl);
-	public static ItemBlock item_ender_pearl_reed = getItemBlock(ender_pearl_reed);
+	public static BlockItem item_ender_pearl_reed = getBlockItem(ender_pearl_reed);
 	
 	public static Block glowstone_reed = new BlockOreReed("glowstone_reed", ReedsConfig.glowstone);
-	public static ItemBlock item_glowstone_reed = getItemBlock(glowstone_reed);
+	public static BlockItem item_glowstone_reed = getBlockItem(glowstone_reed);
 	
 	public static Block gold_reed = new BlockOreReed("gold_reed", ReedsConfig.gold);
-	public static ItemBlock item_gold_reed = getItemBlock(gold_reed);
+	public static BlockItem item_gold_reed = getBlockItem(gold_reed);
 	
 	public static Block iron_reed = new BlockOreReed("iron_reed", ReedsConfig.iron);
-	public static ItemBlock item_iron_reed = getItemBlock(iron_reed);
+	public static BlockItem item_iron_reed = getBlockItem(iron_reed);
 	
 	public static Block lapis_reed = new BlockOreReed("lapis_reed", ReedsConfig.lapis);
-	public static ItemBlock item_lapis_reed = getItemBlock(lapis_reed);
+	public static BlockItem item_lapis_reed = getBlockItem(lapis_reed);
 	
 	public static Block nether_quartz_reed = 
             new BlockOreReed("nether_quartz_reed", ReedsConfig.nether_quartz);
-	public static ItemBlock item_nether_quartz_reed = getItemBlock(nether_quartz_reed);
+	public static BlockItem item_nether_quartz_reed = getBlockItem(nether_quartz_reed);
 	
 	public static Block obsidian_reed = 
             new BlockOreReed("obsidian_reed", ReedsConfig.obsidian);
-	public static ItemBlock item_obsidian_reed = getItemBlock(obsidian_reed);
+	public static BlockItem item_obsidian_reed = getBlockItem(obsidian_reed);
 	
 	public static Block redstone_reed = 
             new BlockOreReed("redstone_reed", ReedsConfig.redstone);
-	public static ItemBlock item_redstone_reed = getItemBlock(redstone_reed);
-
-    // Thaumcraft
-    public static Block cinnabar_reed =
-            new BlockOreReed("cinnabar_reed", ReedsConfig.cinnabar);
-    public static ItemBlock item_cinnabar_reed = getItemBlock(cinnabar_reed);
-
-    public static Block amber_reed =
-            new BlockOreReed("amber_reed", ReedsConfig.amber);
-    public static ItemBlock item_amber_reed = getItemBlock(amber_reed);
+	public static BlockItem item_redstone_reed = getBlockItem(redstone_reed);
 
     public static Block[] reedBlocks = {
         blaze_reed, 
@@ -107,12 +96,10 @@ public class ModBlocks {
         lapis_reed, 
         nether_quartz_reed, 
         obsidian_reed, 
-        redstone_reed,
-        cinnabar_reed,
-        amber_reed
+        redstone_reed
     };
 
-    public static ItemBlock[] reedItems = {
+    public static BlockItem[] reedItems = {
         item_blaze_reed, 
         item_clay_reed, 
         item_coal_reed, 
@@ -125,26 +112,12 @@ public class ModBlocks {
         item_lapis_reed, 
         item_nether_quartz_reed, 
         item_obsidian_reed, 
-        item_redstone_reed,
-        item_cinnabar_reed,
-        item_amber_reed
+        item_redstone_reed
     };
 	
 	public static void preInit() {}
 
 	public static void init() {}
-
-    public static boolean shouldRegister(Block block)
-    {
-        if (block == null) {
-            return false;
-        }
-        if (block instanceof BlockOreReed) {
-            BlockOreReed reed = (BlockOreReed)block;
-            return reed.shouldRegister();
-        }
-        return true;
-    }
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event)
@@ -152,48 +125,46 @@ public class ModBlocks {
 		event.getRegistry().registerAll(ore_essence, gem_essence);
         for (int i = 0; i < reedBlocks.length; ++i)
         {
-            if (shouldRegister(reedBlocks[i]))
-            {
-                event.getRegistry().register(reedBlocks[i]);
-            }
+            event.getRegistry().register(reedBlocks[i]);
         }
 	}
 	
 	@SubscribeEvent
-	public static void registerItemBlocks(RegistryEvent.Register<Item> event)
+	public static void registerBlockItems(RegistryEvent.Register<Item> event)
     {
 		event.getRegistry().registerAll(item_ore_essence, item_gem_essence);
         for (int i = 0; i < reedItems.length; ++i)
         {
-            if (shouldRegister(reedItems[i].getBlock()))
-            {
-                event.getRegistry().register(reedItems[i]);
-            }
+            event.getRegistry().register(reedItems[i]);
         }
 	}
 	
-	private static ItemBlock getItemBlock(Block blockIn)
+	private static BlockItem getBlockItem(Block blockIn)
 	{
-		return (ItemBlock)(new ItemBlock(blockIn).setRegistryName(blockIn.getRegistryName()));
+        Item.Properties properties = new Item.Properties().group(tabOreReeds);
+		BlockItem item = new BlockItem(blockIn, properties);
+        item.setRegistryName(blockIn.getRegistryName());
+        return item;
 	}
-	
-	private static void registerItemBlockModel(ItemBlock item)
+	/*
+	private static void registerBlockItemModel(BlockItem item)
     {
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "normal"));
-	}
+	}*/
 	
 	@SubscribeEvent
 	public static void registerModels(ModelRegistryEvent event)
-    {
-		registerItemBlockModel(item_ore_essence);
-		registerItemBlockModel(item_gem_essence);
+    {/*
+		registerBlockItemModel(item_ore_essence);
+		registerBlockItemModel(item_gem_essence);
 
         for (int i = 0; i < reedItems.length; ++i)
         {
-            if (shouldRegister(reedItems[i].getBlock()))
-            {
-                registerItemBlockModel(reedItems[i]);
-            }
-        }
+            registerBlockItemModel(reedItems[i]);
+        }*/
 	}
+/*
+    private static Block register(String key, Block block) {
+        return Registry.register(Registry.BLOCK, key, block);
+    }*/
 }

@@ -3,27 +3,44 @@ package felinoid.ore_reeds.blocks;
 import felinoid.ore_reeds.config.ReedConfig;
 import felinoid.ore_reeds.config.ReedsConfig;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.block.SoundType;
+import net.minecraft.fluid.IFluidState;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
+import net.minecraft.world.World;
+
+//import net.minecraft.block.material.MapColor;
+/*import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.IntegerProperty;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.common.Loader;*/
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,41 +49,25 @@ import java.util.Random;
 
 public class BlockOreReed extends Block implements net.minecraftforge.common.IPlantable
 {
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 15);
-    protected static final AxisAlignedBB REED_AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 1.0D, 0.875D);
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_0_15;
+    protected static final VoxelShape SHAPE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 16.0D, 14.0D);
     public ReedConfig stats;
     
 	protected BlockOreReed(String name, ReedConfig config)
 	{
-		super(Material.PLANTS, MapColor.GRAY);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
-        this.setTickRandomly(true);
-        this.setCreativeTab(ModBlocks.tabOreReeds);
-        this.setUnlocalizedName("ore_reeds:" + name);
-        this.setRegistryName(name);
+		super(Block.Properties.create(Material.PLANTS, MaterialColor.GRAY).doesNotBlockMovement().tickRandomly().hardnessAndResistance(0f, 0f).sound(SoundType.PLANT));
+        this.setDefaultState(this.stateContainer.getBaseState().with(AGE, Integer.valueOf(0)));
         this.stats = config;
+        this.setRegistryName(name);
 	}
 
-    public boolean shouldRegister()
-    {
-        for (int i = 0; i < stats.mods.length; ++i)
-        {
-            if (Loader.isModLoaded(stats.mods[i]))
-            {
-                return true;
-            }
-        }
-        return false;
+	@Override
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context) {
+        return SHAPE;
     }
 
 	@Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return REED_AABB;
-    }
-
-	@Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    public void tick(BlockState state, World worldIn, BlockPos pos, Random rand)
     {
         if (worldIn.getBlockState(pos.down()).getBlock() == this || this.checkForDrop(worldIn, pos, state))
         {
@@ -81,7 +82,7 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
 
                 if (i < 3)
                 {
-                    int j = ((Integer)state.getValue(AGE)).intValue();
+                    int j = state.get(AGE);
 
                     // This is needed to decrease growth speed
                     if(rand.nextInt() % stats.slowdown == 0
@@ -90,13 +91,13 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
 	                    if (j == 15)
 	                    {
 	                        worldIn.setBlockState(pos.up(), this.getDefaultState());
-	                        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(0)), 4);
+	                        worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(0)), 4);
 	                    }
 	                    else
 	                    {
-	                        worldIn.setBlockState(pos, state.withProperty(AGE, Integer.valueOf(j + 1)), 4);
+	                        worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(j + 1)), 4);
 	                    }
-	                    net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
+                        net.minecraftforge.common.ForgeHooks.onCropsGrowPost(worldIn, pos, state);
                     }
                 }
             }
@@ -108,9 +109,9 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
      * Checks if this block can be placed exactly at the given position.
      */
     @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    public boolean isValidPosition(BlockState stateIn, IWorldReader worldIn, BlockPos pos)
     {
-        IBlockState state = worldIn.getBlockState(pos.down());
+        BlockState state = worldIn.getBlockState(pos.down());
         Block block = state.getBlock();
 
         if (block == this)
@@ -125,11 +126,11 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
         {
             BlockPos blockpos = pos.down();
 
-            for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
+            for (Direction direction : Direction.Plane.HORIZONTAL)
             {
-                IBlockState iblockstate = worldIn.getBlockState(blockpos.offset(enumfacing));
+                BlockState blockstate = worldIn.getBlockState(blockpos.offset(direction));
 
-                if (iblockstate.getMaterial() == Material.LAVA)
+                if (blockstate.getMaterial() == Material.LAVA)
                 {
                     return true;
                 }
@@ -144,12 +145,12 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
      * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
      * block, etc.
      */
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
         this.checkForDrop(worldIn, pos, state);
     }
 
-    protected final boolean checkForDrop(World worldIn, BlockPos pos, IBlockState state)
+    protected final boolean checkForDrop(World worldIn, BlockPos pos, BlockState state)
     {
         if (this.canBlockStay(worldIn, pos))
         {
@@ -164,7 +165,7 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
 
     public boolean canBlockStay(World worldIn, BlockPos pos)
     {
-        return this.canPlaceBlockAt(worldIn, pos);
+        return this.isValidPosition(null, worldIn, pos);
     }
     
     /**
@@ -176,82 +177,26 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
     	return Arrays.asList(stats.growBlocks).contains(name);
     }
 
-    @Nullable
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return NULL_AABB;
-    }
-
     /**
-     * Used to determine ambient occlusion and culling when rebuilding chunks for render
+     * Gets the render layer this block will render on. SOLID for solid blocks, CUTOUT or CUTOUT_MIPPED for on-off
+     * transparency (glass, reeds), TRANSLUCENT for fully blended transparency (stained glass)
      */
     @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-    /**
-     * Convert the given metadata into a BlockState for this Block
-     */
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(AGE, Integer.valueOf(meta));
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public BlockRenderLayer getBlockLayer()
-    {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
-    /**
-     * Convert the BlockState into the correct metadata value
-     */
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return ((Integer)state.getValue(AGE)).intValue();
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(AGE);
     }
 
     @Override
-    public net.minecraftforge.common.EnumPlantType getPlantType(IBlockAccess world, BlockPos pos)
-    {
-        return net.minecraftforge.common.EnumPlantType.Beach;
+    public net.minecraftforge.common.PlantType getPlantType(IBlockReader world, BlockPos pos) {
+        return net.minecraftforge.common.PlantType.Beach;
     }
     @Override
-    public IBlockState getPlant(IBlockAccess world, BlockPos pos)
-    {
-        return this.getDefaultState();
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {AGE});
-    }
-
-    /**
-     * Get the geometry of the queried face at the given position and state. This is used to decide whether things like
-     * buttons are allowed to be placed on the face, or how glass panes connect to the face, among other things.
-     * <p>
-     * Common values are {@code SOLID}, which is the default, and {@code UNDEFINED}, which represents something that
-     * does not fit the other descriptions and will generally cause other things not to connect to the face.
-     * 
-     * @return an approximation of the form of the given face
-     */
-    @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
-    {
-        return BlockFaceShape.UNDEFINED;
+    public BlockState getPlant(IBlockReader world, BlockPos pos) {
+        return getDefaultState();
     }
 }
