@@ -7,13 +7,13 @@
   ],
   "key": {
     "|": {
-      "item": "minecraft:reeds"
+      "item": "minecraft:sugar_cane"
     },
     "#": {
-      "item": "minecraft:blaze_rod"
+      "item": "minecraft:obsidian"
     }
   },
   "result": {
-    "item": "ore_reeds:blaze_reed"
+    "item": "ore_reeds:obsidian_reed"
   }
 }

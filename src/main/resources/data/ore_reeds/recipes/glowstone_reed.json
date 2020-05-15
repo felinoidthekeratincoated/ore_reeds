@@ -7,17 +7,16 @@
   ],
   "key": {
     "|": {
-      "item": "minecraft:reeds"
+      "item": "minecraft:sugar_cane"
     },
     "#": {
-      "item": "minecraft:stone",
-      "data": 0
+      "item": "minecraft:glowstone"
     },
     "%": {
-      "item": "minecraft:coal_block"
+      "item": "minecraft:glowstone_dust"
     }
   },
   "result": {
-    "item": "ore_reeds:coal_reed"
+    "item": "ore_reeds:glowstone_reed"
   }
 }

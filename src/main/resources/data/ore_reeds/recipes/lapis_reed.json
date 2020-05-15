@@ -7,17 +7,17 @@
   ],
   "key": {
     "|": {
-      "item": "minecraft:reeds"
+      "item": "minecraft:sugar_cane"
     },
     "#": {
       "item": "minecraft:stone",
       "data": 0
     },
     "%": {
-      "item": "minecraft:gold_block"
+      "item": "minecraft:lapis_block"
     }
   },
   "result": {
-    "item": "ore_reeds:gold_reed"
+    "item": "ore_reeds:lapis_reed"
   }
 }

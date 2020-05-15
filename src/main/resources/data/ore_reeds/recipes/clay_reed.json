@@ -7,17 +7,16 @@
   ],
   "key": {
     "|": {
-      "item": "minecraft:reeds"
+      "item": "minecraft:sugar_cane"
     },
     "#": {
-      "item": "minecraft:netherrack"
+      "item": "minecraft:clay"
     },
     "%": {
-      "item": "minecraft:quartz_block",
-      "data": 0
+      "item": "minecraft:clay_ball"
     }
   },
   "result": {
-    "item": "ore_reeds:nether_quartz_reed"
+    "item": "ore_reeds:clay_reed"
   }
 }

@@ -5,11 +5,10 @@
   ],
   "key": {
     "#": {
-      "item": "ore_reeds:redstone_reed"
+      "item": "ore_reeds:clay_reed"
     }
   },
   "result": {
-    "item": "minecraft:redstone",
-    "data": 0
+    "item": "minecraft:clay_ball"
   }
 }

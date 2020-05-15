@@ -1,16 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "##",
-    "##"
+    "#"
   ],
   "key": {
     "#": {
-      "item": "ore_reeds:coal_reed"
+      "item": "ore_reeds:redstone_reed"
     }
   },
   "result": {
-    "item": "minecraft:coal",
-    "data": 0
+    "item": "minecraft:redstone"
   }
 }
