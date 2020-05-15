@@ -6,7 +6,8 @@ import felinoid.ore_reeds.config.ReedsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-//import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.Item;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
@@ -17,6 +18,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.*;
 
 
@@ -146,25 +148,12 @@ public class ModBlocks {
         item.setRegistryName(blockIn.getRegistryName());
         return item;
 	}
-	/*
-	private static void registerBlockItemModel(BlockItem item)
-    {
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "normal"));
-	}*/
 	
 	@SubscribeEvent
-	public static void registerModels(ModelRegistryEvent event)
-    {/*
-		registerBlockItemModel(item_ore_essence);
-		registerBlockItemModel(item_gem_essence);
-
-        for (int i = 0; i < reedItems.length; ++i)
-        {
-            registerBlockItemModel(reedItems[i]);
-        }*/
+	public static void registerRenderers(FMLClientSetupEvent event)
+    {
+        for (Block reed : reedBlocks) {
+            RenderTypeLookup.setRenderLayer(reed, RenderType.getCutoutMipped());
+        }
 	}
-/*
-    private static Block register(String key, Block block) {
-        return Registry.register(Registry.BLOCK, key, block);
-    }*/
 }
