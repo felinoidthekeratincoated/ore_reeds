@@ -85,6 +85,20 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
         }
     }
 
+   /**
+    * Update the provided state given the provided neighbor facing and neighbor state, returning a new state.
+    * For example, fences make their connections to the passed in state if possible, and wet concrete powder immediately
+    * returns its solidified counterpart.
+    * Note that this method should ideally consider only the specific face passed in.
+    */
+    @Override
+    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+        if (!stateIn.isValidPosition(worldIn, currentPos)) {
+            worldIn.getPendingBlockTicks().scheduleTick(currentPos, this, 1);
+        }
+
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
 
     /**
      * Checks if this block can be placed exactly at the given position.
@@ -119,16 +133,6 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
 
             return false;
         }
-    }
-
-    /**
-     * Called when a neighboring block was changed and marks that this state should perform any checks during a neighbor
-     * change. Cases may include when redstone power is updated, cactus blocks popping off due to a neighboring solid
-     * block, etc.
-     */
-    public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
-    {
-        this.checkForDrop(worldIn, pos, state);
     }
 
     protected final boolean checkForDrop(World worldIn, BlockPos pos, BlockState state)
