@@ -9,7 +9,6 @@
     }
   },
   "result": {
-    "item": "minecraft:glowstone_dust",
-    "data": 0
+    "item": "minecraft:glowstone_dust"
   }
 }
