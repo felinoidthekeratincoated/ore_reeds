@@ -7,7 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.SoundType;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
@@ -22,6 +21,7 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.PlantType;
 
 import java.util.Arrays;
 import java.util.List;
@@ -177,8 +177,8 @@ public class BlockOreReed extends Block implements net.minecraftforge.common.IPl
     }
 
     @Override
-    public net.minecraftforge.common.PlantType getPlantType(IBlockReader world, BlockPos pos) {
-        return net.minecraftforge.common.PlantType.Beach;
+    public PlantType getPlantType(IBlockReader world, BlockPos pos) {
+        return PlantType.BEACH;
     }
     @Override
     public BlockState getPlant(IBlockReader world, BlockPos pos) {
