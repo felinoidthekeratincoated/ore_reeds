@@ -6,16 +6,21 @@
       "data": 0
     },
     {
-      "item": "minecraft:coal",
-      "data": 0
+      "item": "minecraft:redstone"
     },
     {
       "item": "minecraft:coal",
       "data": 0
     },
     {
+      "item":  "minecraft:bone_meal"
+    },
+    {
       "item": "minecraft:coal",
       "data": 0
+    },
+    {
+      "item": "minecraft:iron_ingot"
     },
     {
       "item": "minecraft:coal",
@@ -25,13 +30,8 @@
       "item": "minecraft:clay_ball"
     },
     {
-      "item":  "minecraft:lapis_lazuli"
-    },
-    {
-      "item": "minecraft:redstone"
-    },
-    {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:coal",
+      "data": 0
     }
   ],
   "result": {
